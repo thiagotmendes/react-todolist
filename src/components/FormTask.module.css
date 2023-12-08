@@ -1,0 +1,29 @@
+.formgrid {
+    display: grid;
+    grid-template-columns: 88% 10%;
+    gap: 2%;
+}
+
+.input {
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--Gray-700, #0D0D0D);
+    background: var(--Gray-500, #262626);
+    color: var(--Gray-300, #808080);
+}
+
+.btn_submit {
+    display: flex;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    background: theme("colors.blue-dark");
+    color: theme("colors.gray-100");
+    transition-duration: .7s;
+}
+
+.btn_submit:hover {
+    background: theme("colors.blue");
+}
