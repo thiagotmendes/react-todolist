@@ -3,22 +3,26 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import check from "../assets/check.svg";
 import check1 from "../assets/check1.svg";
 import { EmptyList } from "./EmptyList";
-import { useState } from "react";
 
+export interface PropsTaskList {
+    id: number,
+    content: string,
+    status: boolean
+}
 
-interface FilhoProps {
-    taskList: {
-        id: number,
-        content: string,
-        status: boolean
-    }[];
-    setTaskList: React.Dispatch<React.SetStateAction<[]>>;
-  }
+interface TaskListPropsChildreen {
+  taskList: {
+    id: number,
+    content: string,
+    status: boolean
+  }[];
+  setTaskList: React.Dispatch<React.SetStateAction<PropsTaskList[]>>
+}
 
-export function TodoList({taskList, setTaskList}: FilhoProps) {
+export function TodoList({taskList, setTaskList}: TaskListPropsChildreen) {
 
     function handleIsChecked(id: number) {
-        const todoCompleted = taskList.map( task => {
+        const todoCompleted: PropsTaskList[] = taskList.map( task => {
             if(task.id === id) {
                 task.status = !task.status; 
             } 
@@ -29,7 +33,7 @@ export function TodoList({taskList, setTaskList}: FilhoProps) {
     }
 
     function handleDeleteTask(id: number) {
-        const currentTaskList = taskList.filter( task => {
+        const currentTaskList: PropsTaskList[] = taskList.filter( task => {
             return task.id !== id
         })
 
@@ -45,7 +49,7 @@ export function TodoList({taskList, setTaskList}: FilhoProps) {
     const trueStatusCount = countTrueStatus(taskList);
 
     // Função de comparação para organizar pelo valor do índice 'status'
-    const compareByStatus = (a: FilhoProps, b: FilhoProps) => {
+    const compareByStatus = (a: PropsTaskList, b: PropsTaskList) => {
         // Organiza em ordem decrescente, para que as tarefas completas venham primeiro
         return a.status === b.status ? 0 : a.status ? 1 : -1;
     };
